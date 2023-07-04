@@ -100,7 +100,14 @@ class genJPnotebook():
             st.raise_section_level()
             self.add_cell("# {} [goto]({})".format(st.strFile, st.strFile))
             for h in st.listOfHeadings:
-                self.add_cell(h[0] + " " + h[2])
+                heading_text :str = h[2].replace('\n', '').lstrip().rstrip()
+                self.add_cell(
+                    h[0] + " [" + heading_text + r"]({}#{})"
+                        .format(
+                            st.strFile,
+                            heading_text.replace(" ", r"-")
+                        )
+                )
 
     def export(self):
         with open(self.outputFile, "w") as f:
@@ -111,6 +118,7 @@ class genJPnotebook():
             {  "cell_type": "markdown",
                "metadata": {
                 "jp-MarkdownHeadingCollapsed": True,
+                "heading_collapsed": True,
                },
                "source": listStrCode
             }
@@ -118,7 +126,7 @@ class genJPnotebook():
 
 def getArgParse() :
     parser = argparse.ArgumentParser(
-        prog = 'Jupyter Notebook parse headings v0.1.0'
+        prog = 'Jupyter Notebook parse headings v0.1.1'
     )
 
     parser.add_argument(

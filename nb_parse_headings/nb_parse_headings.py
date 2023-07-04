@@ -111,6 +111,7 @@ class genJPnotebook():
             {  "cell_type": "markdown",
                "metadata": {
                 "jp-MarkdownHeadingCollapsed": True,
+                "heading_collapsed": True,
                },
                "source": listStrCode
             }

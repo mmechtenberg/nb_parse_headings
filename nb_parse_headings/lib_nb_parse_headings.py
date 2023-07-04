@@ -29,6 +29,9 @@ import tqdm
 
 import argparse
 
+from ._version import __version__
+
+
 
 def extract_headings(strMdSource : List[str]) -> List[Tuple[str, int, str]]:
     listOfHeadings = []
@@ -98,13 +101,13 @@ class genJPnotebook():
     def add_titles(self):
         for st in self.sts:
             st.raise_section_level()
-            self.add_cell("# {} [goto]({})".format(st.strFile, st.strFile))
+            self.add_cell("# {} [goto]({})".format(st.strFile, st.strFile.replace(" ", r"%20")))
             for h in st.listOfHeadings:
                 heading_text :str = h[2].replace('\n', '').lstrip().rstrip()
                 self.add_cell(
                     h[0] + " [" + heading_text + r"]({}#{})"
                         .format(
-                            st.strFile,
+                            st.strFile.replace(" ", r"%20"),
                             heading_text.replace(" ", r"-")
                         )
                 )
@@ -126,7 +129,7 @@ class genJPnotebook():
 
 def getArgParse() :
     parser = argparse.ArgumentParser(
-        prog = 'Jupyter Notebook parse headings v0.1.1'
+        prog = 'Jupyter Notebook parse headings ' + __version__
     )
 
     parser.add_argument(
@@ -159,7 +162,7 @@ def readFilesFromStdin():
 
 
 
-if __name__ == "__main__":
+def entrypoint():
     args = getArgParse().parse_args()
     arg_dict = args.__dict__
 
@@ -177,3 +180,6 @@ if __name__ == "__main__":
         nbts.append(nb_SectionTree(file_l))
 
     genJPnotebook(nbts, outputFile = arg_dict['output'][0])
+
+if __name__ == "__main__":
+    entrypoint()

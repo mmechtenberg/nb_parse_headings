@@ -14,6 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from ._version import __version__
+from . import lib_nb_parse_headings
 
-from .lib_nb_parse_headings import entrypoint
+
+if __name__ == "__main__":
+    lib_nb_parse_headings.entrypoint()
+

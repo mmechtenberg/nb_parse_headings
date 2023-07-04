@@ -16,15 +16,21 @@ limitations under the License.
 
 from setuptools import setup
 
+exec(open('nb_parse_headings/_version.py').read())
+
 setup(name="nb_parse_headings",
-      version='0.1.1',
+      version= __version__,
       description="This is a module which can be used to generate a jupyter notebook"
                   "listing all headings of user selected jupyter notebooks."
                   "The heading listing will contain links to the respective notebooks",
       author="Malte Mechtenberg",
       license="Apache-2.0",
       packages=["nb_parse_headings"],
-      scripts=["./nb_parse_headings/nb_parse_headings.py"],
+      entry_points={
+          'console_scripts':[
+              'nb-parse-headings = nb_parse_headings:entrypoint',
+          ]
+      },
       python_requires=">=3.0",
       install_requires=[
         "tqdm",

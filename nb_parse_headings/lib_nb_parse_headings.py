@@ -140,11 +140,21 @@ def getArgParse() :
         as \\n seperated list of files.
         """
     )
-    parser.add_argument('-o', '--output', nargs = 1)
+    parser.add_argument('-o', '--output'
+                        , nargs = 1
+                        , default=["notebookshelf.ipynb"]
+                        , help   = """
+                        Filename of the output jupyter notebook.
+                        The default value is 
+                            notebookshelf.ipynb
+                        """)
 
     return parser
 
 def removeOutFileFromInList(outfile:str, inList:List[str]) -> List[str]:
+    if not os.path.exists(outfile):
+        return inList
+
     return [ file for file in inList if (not os.path.samefile(outfile, file)) ]
 
 def readFilesFromStdin():

@@ -14,4 +14,4 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-__version__ = "v0.1.2"
+__version__ = "v0.2.0"

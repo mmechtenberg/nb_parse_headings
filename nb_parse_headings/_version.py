@@ -14,6 +14,4 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from ._version import __version__
-
-from .lib_nb_parse_headings import entrypoint
+__version__ = "v0.1.2"

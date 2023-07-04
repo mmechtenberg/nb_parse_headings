@@ -17,7 +17,7 @@ limitations under the License.
 from setuptools import setup
 
 setup(name="nb_parse_headings",
-      version='0.1.0',
+      version='0.1.1',
       description="This is a module which can be used to generate a jupyter notebook"
                   "listing all headings of user selected jupyter notebooks."
                   "The heading listing will contain links to the respective notebooks",

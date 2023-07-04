@@ -98,13 +98,13 @@ class genJPnotebook():
     def add_titles(self):
         for st in self.sts:
             st.raise_section_level()
-            self.add_cell("# {} [goto]({})".format(st.strFile, st.strFile))
+            self.add_cell("# {} [goto]({})".format(st.strFile, st.strFile.replace(" ", r"%20")))
             for h in st.listOfHeadings:
                 heading_text :str = h[2].replace('\n', '').lstrip().rstrip()
                 self.add_cell(
                     h[0] + " [" + heading_text + r"]({}#{})"
                         .format(
-                            st.strFile,
+                            st.strFile.replace(" ", r"%20"),
                             heading_text.replace(" ", r"-")
                         )
                 )
